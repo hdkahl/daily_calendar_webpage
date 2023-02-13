@@ -1,0 +1,60 @@
+.row-cols-7>*{flex:0 0 auto;width:14.2857142857%;}
+:root {
+    --cell-width: 77px;
+}
+.square{
+    aspect-ratio:1/1;
+    /*vertical-align: middle;*/
+    align-items: center;
+    justify-content: center;
+}
+.uCell{
+  background: red;
+
+}
+.aCell {
+  background: blue
+}
+
+.lCell {
+    background: green
+}
+
+.shapeContainer {
+    cursor: move;
+    position: absolute;
+    width:100%;
+}
+.shape{
+  /*width: auto;*/
+  flex: 0 0 auto;
+  /*  display: flex;*/
+  aspect-ratio:1/1;
+}
+.cell {
+  flex: 0 0 auto;
+  width: var(--cell-width, 77px);
+    height: var(--cell-width, 77px);
+
+    /*width: 20px;*/
+  aspect-ratio:1/1;
+  text-align: center;
+}
+
+#calendar {
+    height: 75%;
+    width: 50%;
+}
+#a-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#u-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+
+#l-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
