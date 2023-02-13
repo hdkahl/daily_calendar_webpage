@@ -1,1 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <style>
+      .row-cols-7>*{flex:0 0 auto;width:14.2857142857%;}
+:root {
+    --cell-width: 77px;
+}
+.square{
+    aspect-ratio:1/1;
+    /*vertical-align: middle;*/
+    align-items: center;
+    justify-content: center;
+}
+.uCell{
+  background: red;
 
+}
+.aCell {
+  background: blue
+}
+.shapeContainer {
+    cursor: move;
+    position: absolute;
+    width:100%;
+}
+.shape{
+  /*width: auto;*/
+  flex: 0 0 auto;
+  /*  display: flex;*/
+  aspect-ratio:1/1;
+}
+.cell {
+  flex: 0 0 auto;
+  width: var(--cell-width, 77px);
+    height: var(--cell-width, 77px);
+
+    /*width: 20px;*/
+  aspect-ratio:1/1;
+  text-align: center;
+}
+
+#calendar {
+    height: 75%;
+    width: 50%;
+}
+#a-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+    </style>
+  </head>
+  <body>
+
+    <!-- Example Code -->
+    
+<div class="container" id="calendar">
+  <div class="row row-cols-7">
+   <div class="col text-center border border-primary">Jan</div>
+   <div class="col text-center border square">Feb</div>
+   <div class="col text-center border">Mar</div>
+   <div class="col text-center border">Apr</div>
+   <div class="col text-center border">May</div>
+   <div class="col text-center border">Jun</div>
+   <div class="col text-center"></div>
+   <div class="col text-center border square">Jul</div>
+   <div class="col text-center border">Aug</div>
+   <div class="col text-center border">Sep</div>
+   <div class="col text-center border">Oct</div>
+   <div class="col text-center border">Nov</div>
+   <div class="col text-center border">Dec</div>
+  </div>
+  <div class="row row-cols-7 align-middle">
+   <div class="col text-center border square align-middle">1</div>
+   <div class="col text-center border">2</div>
+   <div class="col text-center border">3</div>
+   <div class="col text-center border">4</div>
+   <div class="col text-center border">5</div>
+   <div class="col text-center border">6</div>
+   <div class="col text-center border">7</div>
+   <div class="col text-center border square">8</div>
+   <div class="col text-center border">9</div>
+   <div class="col text-center border">10</div>
+   <div class="col text-center border">11</div>
+   <div class="col text-center border">12</div>
+   <div class="col text-center border">13</div>
+   <div class="col text-center border">14</div>
+   <div class="col text-center border square">15</div>
+   <div class="col text-center border">16</div>
+   <div class="col text-center border">17</div>
+   <div class="col text-center border">18</div>
+   <div class="col text-center border">19</div>
+   <div class="col text-center border">20</div>
+   <div class="col text-center border">21</div>
+   <div class="col text-center border square">22</div>
+   <div class="col text-center border">23</div>
+   <div class="col text-center border">24</div>
+   <div class="col text-center border">25</div>
+   <div class="col text-center border">26</div>
+   <div class="col text-center border">27</div>
+   <div class="col text-center border">28</div>
+   <div class="col text-center border square">29</div>
+   <div class="col text-center border">30</div>
+   <div class="col text-center border" onclick="myFunction_get()">31</div>
+  </div>
+    <script>
+        let box = document.querySelector('.square');
+        let width1 = box.offsetWidth;
+        let height = box.clientHeight;
+        console.log({width1});
+        let r = document.querySelector(':root');
+        r.style.setProperty('--cell-width',width1+"px");
+
+        function myFunction_get() {
+            // Get the styles (properties and values) for the root
+            let rs = getComputedStyle(r);
+            // Alert the value of the --blue variable
+            alert("The value of --cell-width is: " + rs.getPropertyValue('--cell-width'));
+        }
+        // let cells = document.getElementsByClassName('.cell');
+        // for (let i = 0; i< cells.length; i++){
+        //
+        //     cells.item(i).style.setProperty('--cel-width',width);
+        // }
+    </script>
+</div>
+<!-- <div class="container"> -->
+<div class="shapeContainer container" id="u-shape">
+<table class="shape u-shape" >
+<tr>
+	<td class="uCell cell"></td>
+    <td class="uCell cell"></td>
+</tr>
+<tr>
+	<td class="uCell cell"></td>
+</tr>
+<tr>
+	<td class="uCell cell"></td>
+    <td class="uCell cell"></td>
+</tr>
+</table>
+</div>
+
+<div class="shapeContainer container" id="a-shape-container">
+<table class="shape a-shape"  id="a-shape" >
+<tr>
+	<td class="aCell cell square "></td>
+    <td class="aCell cell"></td>
+</tr>
+<tr>
+	<td class="aCell cell square"></td>
+    <td class="aCell cell"></td>
+</tr>
+<tr>
+	<td class="aCell cell square"></td>
+</tr>
+</table>
+</div>
+<!-- </div> -->
+    
+    <!-- End Example Code -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+// Make the DIV element draggable:
+
+function onClick2(){
+    let e = document.getElementById("a-shape");
+    // for (const eKey in document.getElementsByClassName("a-shape")) {
+    //     alert(e.style.getPropertyValue("--rotation"));
+    // }
+    let rot = e.style.getPropertyValue("--rotation");
+    // alert("YOU CLICKED IT rot=<"+ rot + ">");
+    rot = parseInt(rot.replace("deg",""));
+    // alert("YOU CLICKED IT rot=<"+ rot + ">");
+    if (isNaN(rot)) {
+        // alert("NONE");
+        rot = 0;
+    }
+    rot = rot + 90;
+    e.style.setProperty("--rotation",rot.toString()+"deg");
+
+    // e.style.transform = "rotate(45deg)";
+    // alert("YOU CLICKED IT "+ rot.toString());
+}
+
+
+dragElement(document.getElementById("u-shape"));
+dragElement(document.getElementById("a-shape-container"));
+document.getElementById("a-shape").addEventListener("click",onClick2);
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+
+}
+</script>
+
+  </body>
+</html>
