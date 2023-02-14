@@ -19,6 +19,8 @@ function myFunction_get() {
 
 let last_cell_x = 0;
 let last_cell_y = 0;
+let offset_x = 0;
+let offset_y = 0;
 let overCalendar = false;
 function mouseOverCalendar(){
     last_cell_x = event.clientX;
@@ -31,6 +33,35 @@ function mouseOverCalendar(){
 
 }
 
+
+function checkCalendarSquare(x,y){
+    let elements = document.elementsFromPoint(x, y);
+    var output= "";
+    overCalendar = false;
+    elements.forEach((elt, i) => {
+        output+= elt.localName + "(" + elt.className + ")<";
+        if (elt.className.includes("calSquare")){
+            console.log("calSquare=",elt.innerHTML)
+            console.log("calSquare=",elt.offsetLeft,",",elt.offsetTop);
+            overCalendar = true;
+            last_cell_x = elt.offsetLeft - Math.floor(elt.offsetWidth/2); //- Math.floor(width1/2);
+            last_cell_y = elt.offsetTop;
+
+            // last_cell_x = elt.getBoundingClientRect()['left']; //- Math.floor(width1/2);
+            // last_cell_y = elt.getBoundingClientRect()['top'];
+            console.log("x=" + last_cell_x + ", y=" + last_cell_y);
+            return true;
+        }
+        if (elt.className.includes("cell")){
+            console.log("cellOffsets=",elt.offsetLeft,",",elt.offsetTop);
+            offset_x = elt.offsetLeft;
+            offset_y = elt.offsetTop;
+        }
+    });
+    console.log(output);
+    
+    return overCalendar;
+}
 
 
 
@@ -63,16 +94,18 @@ function dragElement(elmnt) {
     pos4 = e.clientY;
     if(document.elementFromPoint(pos3,pos4).className.includes("cell")){
     // call a function whenever the cursor moves:
+    // elmnt.parentElement.append(elmnt);
     document.onmousemove = elementDrag;
 
     document.onmouseup = snapOrRotate;
+    
     }
-    let elements = document.elementsFromPoint(pos3, pos4);
-    var output= "";
-    elements.forEach((elt, i) => {
-        output+= elt.localName + "(" + elt.className + ")<";
-    });
-    console.log(output);
+    // let elements = document.elementsFromPoint(pos3, pos4);
+    // var output= "";
+    // elements.forEach((elt, i) => {
+    //     output+= elt.localName + "(" + elt.className + ")<";
+    // });
+    // console.log(output);
   }
 
   function elementDrag(e) {
@@ -99,9 +132,17 @@ function dragElement(elmnt) {
   }
 
   function snapToGrid(e){
+    console.log("mouse position=",pos3,",",pos4);
+    console.log("Offsets=",elmnt.offsetLeft,",",elmnt.offsetTop);
+    checkCalendarSquare(pos3,pos4);
+    console.log(overCalendar);
       if (overCalendar){
-        elmnt.style.top = (elmnt.offsetTop - last_cell_y) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - last_cell_x) + "px";
+        //   console.log("mouse position=",pos3,",",pos4);
+        //   console.log("Offsets=",elmnt.offsetTop,",",elmnt.offsetLeft);
+        console.log(( last_cell_y) + "px");
+        console.log(( last_cell_x - offset_x) + "px");
+        elmnt.style.top = (last_cell_y - offset_y) + "px";
+        elmnt.style.left =  (last_cell_x - offset_x ) + "px";
       }
   }
 
@@ -135,6 +176,7 @@ function dragElement(elmnt) {
     document.onmousemove = null;
     dragged=false;
     overCalendar = false;
+    console.log("DONE")
   }
 
 }

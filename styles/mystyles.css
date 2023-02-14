@@ -17,9 +17,12 @@
 }
 
 .lCell {
-    background: green
+    background: green;
+    /* opacity: 50%; */
 }
-
+.lCell:active{
+    opacity: 25%;
+}
 .shapeContainer {
     cursor: move;
     position: absolute;
