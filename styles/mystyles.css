@@ -2,6 +2,12 @@
 :root {
     --cell-width: 77px;
 }
+
+.today{
+    border: 1px solid #000;
+    background: lightseagreen;
+}
+
 .square{
     aspect-ratio:1/1;
     /*vertical-align: middle;*/
@@ -47,6 +53,7 @@
   /*  display: flex;*/
   aspect-ratio:1/1;
     /* cursor: move; */
+    position: relative;
 }
 .cell {
   flex: 0 0 auto;

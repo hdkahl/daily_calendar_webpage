@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles/mystyles.css" rel="stylesheet">
     <title>Daily Calendar</title>
@@ -13,127 +14,131 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<!-- <script src="https://raw.githubusercontent.com/wilq32/jqueryrotate/master/jQueryRotate.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- <script src="scripts/jQueryRotate.js"></script> -->
+    <!-- <script src="scripts/jQueryRotate.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/myJQueryScript.js"></script>
+<!-- <script src="scripts/script.js"></script>
+ -->
 </head>
-<body>
+<body onload=startup()>
 
 <!-- Example Code -->
 
 <div class="container" id="calendar">
     <div class="row row-cols-7">
-        <div class="col text-center calSquare border " >Jan</div>
-        <div class="col text-center calSquare border square" >Feb</div>
-        <div class="col text-center calSquare border" >Mar</div>
-        <div class="col text-center calSquare border" >Apr</div>
-        <div class="col text-center calSquare border" >May</div>
-        <div class="col text-center calSquare border">Jun</div>
+        <div class="col text-center calSquare border " id="Jan">Jan</div>
+        <div class="col text-center calSquare border square" id="Feb">Feb</div>
+        <div class="col text-center calSquare border" id="Mar">Mar</div>
+        <div class="col text-center calSquare border" id="Apr">Apr</div>
+        <div class="col text-center calSquare border" id="May">May</div>
+        <div class="col text-center calSquare border"id="Jun">Jun</div>
         <div class="col text-center calSquare"></div>
-        <div class="col text-center calSquare border square">Jul</div>
-        <div class="col text-center calSquare border">Aug</div>
-        <div class="col text-center calSquare border">Sep</div>
-        <div class="col text-center calSquare border">Oct</div>
-        <div class="col text-center calSquare border">Nov</div>
-        <div class="col text-center calSquare border">Dec</div>
+        <div class="col text-center calSquare border square"id="Jul">Jul</div>
+        <div class="col text-center calSquare border"id="Aug">Aug</div>
+        <div class="col text-center calSquare border"id="Sep">Sep</div>
+        <div class="col text-center calSquare border"id="Oct">Oct</div>
+        <div class="col text-center calSquare border"id="Nov">Nov</div>
+        <div class="col text-center calSquare border"id="Dec">Dec</div>
     </div>
     <div class="row row-cols-7 align-middle">
-        <div class="col text-center calSquare border square align-middle">1</div>
-        <div class="col text-center calSquare border">2</div>
-        <div class="col text-center calSquare border">3</div>
-        <div class="col text-center calSquare border">4</div>
-        <div class="col text-center calSquare border">5</div>
-        <div class="col text-center calSquare border">6</div>
-        <div class="col text-center calSquare border">7</div>
-        <div class="col text-center calSquare border square">8</div>
-        <div class="col text-center calSquare border">9</div>
-        <div class="col text-center calSquare border">10</div>
-        <div class="col text-center calSquare border">11</div>
-        <div class="col text-center calSquare border">12</div>
-        <div class="col text-center calSquare border">13</div>
-        <div class="col text-center calSquare border">14</div>
-        <div class="col text-center calSquare border square">15</div>
-        <div class="col text-center calSquare border">16</div>
-        <div class="col text-center calSquare border">17</div>
-        <div class="col text-center calSquare border">18</div>
-        <div class="col text-center calSquare border">19</div>
-        <div class="col text-center calSquare border">20</div>
-        <div class="col text-center calSquare border">21</div>
-        <div class="col text-center calSquare border square">22</div>
-        <div class="col text-center calSquare border">23</div>
-        <div class="col text-center calSquare border">24</div>
-        <div class="col text-center calSquare border">25</div>
-        <div class="col text-center calSquare border">26</div>
-        <div class="col text-center calSquare border">27</div>
-        <div class="col text-center calSquare border">28</div>
-        <div class="col text-center calSquare border square">29</div>
-        <div class="col text-center calSquare border">30</div>
-        <div class="col text-center calSquare border" onclick="myFunction_get()">31</div>
+        <div class="col text-center calSquare border square align-middle"id="1">1</div>
+        <div class="col text-center calSquare border"id="2">2</div>
+        <div class="col text-center calSquare border"id="3">3</div>
+        <div class="col text-center calSquare border"id="4">4</div>
+        <div class="col text-center calSquare border"id="5">5</div>
+        <div class="col text-center calSquare border"id="6">6</div>
+        <div class="col text-center calSquare border"id="7">7</div>
+        <div class="col text-center calSquare border square"id="8">8</div>
+        <div class="col text-center calSquare border"id="9">9</div>
+        <div class="col text-center calSquare border"id="10">10</div>
+        <div class="col text-center calSquare border"id="11">11</div>
+        <div class="col text-center calSquare border"id="12">12</div>
+        <div class="col text-center calSquare border"id="13">13</div>
+        <div class="col text-center calSquare border"id="14">14</div>
+        <div class="col text-center calSquare border square"id="15">15</div>
+        <div class="col text-center calSquare border"id="16">16</div>
+        <div class="col text-center calSquare border"id="17">17</div>
+        <div class="col text-center calSquare border"id="18">18</div>
+        <div class="col text-center calSquare border"id="19">19</div>
+        <div class="col text-center calSquare border"id="20">20</div>
+        <div class="col text-center calSquare border"id="21">21</div>
+        <div class="col text-center calSquare border square"id="22">22</div>
+        <div class="col text-center calSquare border"id="23">23</div>
+        <div class="col text-center calSquare border"id="24">24</div>
+        <div class="col text-center calSquare border"id="25">25</div>
+        <div class="col text-center calSquare border"id="26">26</div>
+        <div class="col text-center calSquare border"id="27">27</div>
+        <div class="col text-center calSquare border"id="28">28</div>
+        <div class="col text-center calSquare border square"id="29">29</div>
+        <div class="col text-center calSquare border"id="30">30</div>
+        <div class="col text-center calSquare border" onclick="myFunction_get()"id="31">31</div>
     </div>
 </div>
 <div class="flex-container">
 <div class="shapeContainer" id="u-shape-header">
     <table class="shape u-shape" id="u-shape">
         <tr>
-            <td class="uCell cell"></td>
-            <td class="uCell cell"></td>
+            <td class="uCell cell" id="u1"></td>
+            <td class="uCell cell" id="u2"></td>
         </tr>
         <tr>
-            <td class="uCell cell"></td>
+            <td class="uCell cell" id="u3"></td>
         </tr>
         <tr>
-            <td class="uCell cell"></td>
-            <td class="uCell cell"></td>
+            <td class="uCell cell" id="u4"></td>
+            <td class="uCell cell" id="u5"></td>
         </tr>
     </table>
 </div>
 
-<div class="shapeContainer border border-primary" id="a-shape-header">
+<div class="shapeContainer" id="a-shape-header">
     <table class="shape a-shape" id="a-shape">
         <tr>
-            <td class="aCell cell square "></td>
-            <td class="aCell cell"></td>
+            <td class="aCell cell square " id="a1"></td>
+            <td class="aCell cell" id="a2"></td>
         </tr>
         <tr>
-            <td class="aCell cell square"></td>
-            <td class="aCell cell"></td>
+            <td class="aCell cell square" id="a3"></td>
+            <td class="aCell cell" id="a4"></td>
         </tr>
         <tr>
-            <td class="aCell cell square"></td>
+            <td class="aCell cell square" id="a5"></td>
         </tr>
     </table>
 </div>
 
 
-<div class="shapeContainer clearfix border border-success" id="l-shape-header">
+<div class="shapeContainer clearfix" id="l-shape-header">
     <table class="shape l-shape" id="l-shape">
         <tr>
-            <td class="lCell cell square "></td>
+            <td class="lCell cell square " id="l1"></td>
         </tr>
         <tr>
-            <td class="lCell cell square "></td>
+            <td class="lCell cell square " id="l2"></td>
         </tr>
         <tr>
-            <td class="lCell cell square "></td>
+            <td class="lCell cell square " id="l3"></td>
         </tr>
         <tr>
-            <td class="lCell cell square "></td>
-            <td class="lCell cell"></td>
+            <td class="lCell cell square " id="l4"></td>
+            <td class="lCell cell" id="l5"></td>
         </tr>
     </table>
 </div>
 <div class="shapeContainer clearfix " id="r-shape-header">
-    <table class="shape r-shape ui-widget-content" id="r-shape">
+    <table class="shape r-shape" id="r-shape">
         <tr>
-            <td class="rCell cell square "></td>
+            <td class="rCell cell square " id="r1"></td>
         </tr>
         <tr>
-            <td class="rCell cell square "></td>
+            <td class="rCell cell square " id="r2"></td>
         </tr>
         <tr>
-            <td class="rCell cell square "></td>
-            <td class="rCell cell"></td>
+            <td class="rCell cell square " id="r3"></td>
+            <td class="rCell cell" id="r4"></td>
         </tr>
         <tr>
-            <td class="rCell cell square "></td>
+            <td class="rCell cell square " id="r5"></td>
 
         </tr>
     </table>
@@ -143,87 +148,7 @@
 
 <!-- End Example Code -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- <script src="scripts/script.js"></script>
- -->
-<script>
 
-function get_rotation(obj) {
-    // let elmnt2 = document.getElementById(elmnt.id.replace("-header", ""));
-    let rot = obj.css("--rotation");
-    rot = parseInt(rot.replace("deg", ""));
-    if (isNaN(rot)) {
-        rot = 0;
-    }
-    obj.css({"--rotation":rot + "deg"});
-    return rot
-}
-jQuery.fn.rotate_90 = function() {
-    let degrees = (get_rotation($(this)) + 90) % 360;
-    $(this).css({
-        "--rotation":degrees + "deg",
-        'transform' : 'rotate('+ degrees +'deg)'});
-    console.log($(this).attr("id") + " rotated to " + degrees);
-    return $(this);
-};
 
-jQuery.fn.rotate = function(degrees) {
-    $(this).css({'transform' : 'rotate('+ degrees +'deg)'});
-    return $(this);
-};
-$( function() {
-    dragged=false;
-    $( ".shape" ).draggable({ snap: ".calSquare", handle: ".cell", cursor: "move", opacity: 0.7, helper: "original",
-                                drag: function() {
-                                        dragged=true;
-                                },
-                                stop: function() {
-                                        dragged=false;
-                                        console.log("drag stopped");
-                                    }
-                            });
-        
-
-    $( ".shape" ).click(function() {
-        // console.log($(this).prop("rotation"));
-        // console.log($(this).attr("class"));
-        // console.log(get_rotation($(this)));
-        console.log($(this).attr("id") + " clicked and drag=" +dragged);
-        if (dragged) {
-            dragged=false;
-        }
-        else {
-            $(this).rotate_90();
-        }
-
-    });
-});
- 
-//   $("#r-shape").rotate({bind:{
-//   click: function(){
-// 	console.log("YOU ARE HERE" + $(this).getRotateAngle());
-//     $(this).rotate({
-//       angle: $(this).getRotateAngle() + 90
-//       });
-// 	  console.log("Done" + $(this).getRotateAngle());
-//     }
-//   }
-// });
-// $("r-shape").rotate(45);
-let box = document.querySelector('.square');
-let width1 = box.offsetWidth;
-let height = box.clientHeight;
-console.log({width1});
-let r = document.querySelector(':root');
-r.style.setProperty('--cell-width', width1 + "px");
-onresize = (event) => {
-    let box = document.querySelector('.square');
-    let width1 = box.offsetWidth;
-    let height = box.clientHeight;
-    console.log({width1});
-    let r = document.querySelector(':root');
-    r.style.setProperty('--cell-width', width1 + "px");
-};
-</script>
 </body>
 </html>
