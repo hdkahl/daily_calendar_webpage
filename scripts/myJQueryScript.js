@@ -47,7 +47,7 @@ $(".shape").each(function () {
 box = document.querySelector('.square');
 width1 = box.offsetWidth;
 let height = box.clientHeight;
-console.log({width1});
+console.log("WIDTH",{width1});
 let r = document.querySelector(':root');
 r.style.setProperty('--cell-width', width1 + "px");
 }
@@ -126,7 +126,7 @@ function isCellOverCalendar(cell, left_initial, top_initial){
     let left_position = cell.offset().left;
     let top_position = cell.offset().top;
     console.log(cell.attr("id") + " is at " + left_position + " " + top_position);
-    return (is_corner_over_calendar(left_position, top_position) && is_corner_over_calendar(left_position + width1, top_position + width1));
+    return (is_corner_over_calendar(left_position, top_position, cell) && is_corner_over_calendar(left_position + width1, top_position + width1, cell));
    
 }
 
@@ -135,11 +135,12 @@ function isCellOverCalendar(cell, left_initial, top_initial){
 //     cursor.style.top = y + "px"
 // }
 
-function is_corner_over_calendar(left, top){
+function is_corner_over_calendar(left, top, cell){
     // setTimeout(mm(top,left),500);
     let elements = document.elementsFromPoint(left, top);
     let overCalendar = false;
     // console.log("starting loop");
+    overlap = 0;
     elements.forEach((elt, i) => {
         // console.log(elt);
         if (elt.className.includes("calSquare") && !elt.className.includes("today")){
@@ -147,10 +148,14 @@ function is_corner_over_calendar(left, top){
             // log_element_position("CAl_SQUARE",elt);
             return overCalendar;
         }
+        if (elt.className.includes(" cell") && elt.id[0] != cell.attr("id")[0]){
+            console.log(elt.id);
+            overlap+=1;
+        }
         // console.log(overCalendar);
     });
     // console.log(left + " " + top + " " + overCalendar);
-    return overCalendar;
+    return overCalendar && overlap<=0;
 }
 
 function isOverCalendar(ui){
@@ -222,15 +227,15 @@ $( function() {
                                         console.log("drag stopped");
                                         validate_shape_position(ui);
                                         dragged=false;
-                                        check_if_solved_by_shape_cells();
+                                        // check_if_solved_by_shape_cells();
                                     }
                             });
-    $(".cell").droppable({
+    $(".cell").droppable(/*{
         classes: {
             "ui-droppable-active": "ui-state-active",
             "ui-droppable-hover": "ui-state-hover"
           }
-        });   
+        }*/);   
     $( ".shape" ).mouseup(function() {
         // console.log($(this).prop("rotation"));
         // console.log($(this).attr("class"));

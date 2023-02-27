@@ -30,8 +30,28 @@
     background: orange;
     /* opacity: 50%; */
 }
+.oCell {
+    background: cadetblue;
+    /* opacity: 50%; */
+}
+.jCell {
+    background: salmon;
+    /* opacity: 50%; */
+}
+.zCell {
+    background: purple;
+    /* opacity: 50%; */
+}
+/* div {
+    border: solid;
+} */
 .empty_cell{
 
+    flex: 0 0 auto;
+    width: var(--cell-width, 70px);
+    height: var(--cell-width, 70px);
+    aspect-ratio:1/1;
+    text-align: center;
 }
 .shape:active{
     opacity: 25%;
@@ -43,20 +63,26 @@
 	/* width: var(--cell-width, 77px) * 4; */
     /* flex: 0 0 auto; */
     /*width:100%;*/
+    width: auto;
+    display: inherit;
+    padding: 10px;
+    float: left;
 }
 .flex-container {
-  display: flex;
+  /* display: block;
+  width: auto; */
+  /* height: auto; */
 }
 .shape{
-  /*width: auto;*/
-  flex: 0 0 auto;
+  width: auto;
+  /* flex: 0 0 auto; */
   /*  display: flex;*/
   aspect-ratio:1/1;
     /* cursor: move; */
     position: relative;
 }
 .cell {
-  flex: 0 0 auto;
+  /* flex: 0 0 auto; */
   width: var(--cell-width, 70px);
     height: var(--cell-width, 70px);
 	cursor: move;
@@ -85,6 +111,18 @@
     /*position: absolute;*/
 }
 #r-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#z-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#j-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#o-shape {
     --rotation: 0deg;
     transform: rotate(var(--rotation));
 }
