@@ -20,24 +20,39 @@
     background: green;
     /* opacity: 50%; */
 }
-.lCell:active{
+.rCell {
+    background: orange;
+    /* opacity: 50%; */
+}
+.empty_cell{
+
+}
+.shape:active{
     opacity: 25%;
 }
 .shapeContainer {
-    cursor: move;
-    position: absolute;
-    width:100%;
+    /*cursor: move;*/
+    /* position: block; */
+	/* width: 25%; */
+	/* width: var(--cell-width, 77px) * 4; */
+    /* flex: 0 0 auto; */
+    /*width:100%;*/
+}
+.flex-container {
+  display: flex;
 }
 .shape{
   /*width: auto;*/
   flex: 0 0 auto;
   /*  display: flex;*/
   aspect-ratio:1/1;
+    /* cursor: move; */
 }
 .cell {
   flex: 0 0 auto;
-  width: var(--cell-width, 77px);
-    height: var(--cell-width, 77px);
+  width: var(--cell-width, 70px);
+    height: var(--cell-width, 70px);
+	cursor: move;
 
     /*width: 20px;*/
   aspect-ratio:1/1;
@@ -58,6 +73,11 @@
 }
 
 #l-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+    /*position: absolute;*/
+}
+#r-shape {
     --rotation: 0deg;
     transform: rotate(var(--rotation));
 }
