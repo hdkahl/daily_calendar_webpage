@@ -42,6 +42,10 @@
     background: purple;
     /* opacity: 50%; */
 }
+.sCell {
+    background: green;
+    /* opacity: 50%; */
+}
 /* div {
     border: solid;
 } */
@@ -123,6 +127,11 @@
     transform: rotate(var(--rotation));
 }
 #o-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+
+#s-shape {
     --rotation: 0deg;
     transform: rotate(var(--rotation));
 }
