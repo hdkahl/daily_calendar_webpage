@@ -93,8 +93,8 @@ function validate_shape_position(ui){
     }
     else {
         let shape = ui.helper;
-        console.log(shape)
-        console.log(shape.data("originalOffset"));
+        // console.log(shape)
+        // console.log(shape.data("originalOffset"));
         // shape.offset(shape.data("originalOffset"));
         // shape.animate(shape.data("originalOffset"), 1000);
         shape.animate({
@@ -125,10 +125,20 @@ function isCellOverCalendar(cell, left_initial, top_initial){
     // console.log(cell.offset());
     // console.log(cell[0] + " is at " + cell[0].offsetLeft + " " + cell[0].offsetTop);
     // console.log(cell);
-    let left_position = cell.offset().left;
-    let top_position = cell.offset().top;
+    let left_position = cell.offset().left  + width1/2;
+    let top_position = cell.offset().top  + width1/2;
     // console.log(cell.attr("id") + " is at " + left_position + " " + top_position);
-    return (is_corner_over_calendar(left_position + width1/2, top_position + width1/2, cell));
+    // console.log(cell.attr("id") + " is at " + cell.position().left + " " + cell.position().top);
+    
+    // return setTimeout(function(){
+    //     // $("#crosshair").css({
+    //     //     top: (top_position + width1/2+5) +"px",
+    //     //     left: (left_position + width1/2 + 5) + "px"
+    //     // })
+    //     return (is_corner_over_calendar(left_position, top_position, cell));
+    // },500);
+    return (is_corner_over_calendar(left_position, top_position, cell));
+    // return (is_corner_over_calendar(left_position + width1/2, top_position + width1/2, cell));
     // return (is_corner_over_calendar(left_position, top_position, cell) && is_corner_over_calendar(left_position + width1, top_position + width1, cell));
    
 }
@@ -139,7 +149,8 @@ function isCellOverCalendar(cell, left_initial, top_initial){
 // }
 
 function is_corner_over_calendar(left, top, cell){
-    // setTimeout(mm(top,left),500);
+
+    // cell.after("<img id=\"crosshair\" style=\"position:absolute; width:10px; height:10px; z-index: 100;top:" + (top-5) +"; left: " + (left-5) +"; \" src=\"https://w7.pngwing.com/pngs/114/653/png-transparent-reticle-computer-icons-cursor-miscellaneous-angle-symmetry.png\"/>")
     let elements = document.elementsFromPoint(left, top);
     let overCalendar = false;
     // console.log("starting loop");
@@ -147,7 +158,7 @@ function is_corner_over_calendar(left, top, cell){
     elements.forEach((elt, i) => {
         // console.log(elt);
         if (elt.className.includes("calSquare")){
-            // console.log(cell.attr("id"), " is over ", elt.id);
+            console.log(cell.attr("id"), " is over ", elt.id);
             if(elt.className.includes("today")){
                 console.log(cell.attr("id"), " BLOCKS TODAY");
             }
@@ -158,7 +169,8 @@ function is_corner_over_calendar(left, top, cell){
             }
         }
         if (elt.className.includes(" cell") && elt.id[0] != cell.attr("id")[0]){
-            console.log("OVERLAP WITH", elt.id);
+            console.log(cell.attr("id"), "OVERLAP WITH", elt.id);
+            console.log(cell.attr("id") + " is at " + left + " " + top);
             overlap+=1;
         }
         // console.log(overCalendar);
@@ -243,10 +255,18 @@ jQuery.fn.rotate = function(degrees) {
     $(this).css({'transform' : 'rotate('+ degrees +'deg)'});
     return $(this);
 };
+
+
+
 $( function() {
     dragged=false;
     clicks = 0;
     timer = null;
+    $("body").mousemove(function(event){
+        // console.log("MOVING");
+        var msg = event.pageX + ", " + event.pageY;
+        $("#mouseCoord").text(msg);
+    });
     $( ".shape" ).draggable({ snap: ".calSquare", handle: ".cell", cursor: "move", opacity: 0.7, helper: "original",
                                 stack: ".shape",   snapTolerance: width1/2, /*revert: "valid",*/ refreshPositions: false,
                                 drag: function() {
