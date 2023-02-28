@@ -230,12 +230,12 @@ $( function() {
                                         // check_if_solved_by_shape_cells();
                                     }
                             });
-    $(".cell").droppable(/*{
-        classes: {
-            "ui-droppable-active": "ui-state-active",
-            "ui-droppable-hover": "ui-state-hover"
-          }
-        }*/);   
+    // $(".cell").droppable(/*{
+    //     classes: {
+    //         "ui-droppable-active": "ui-state-active",
+    //         "ui-droppable-hover": "ui-state-hover"
+    //       }
+    //     }*/);   
     $( ".shape" ).mouseup(function() {
         // console.log($(this).prop("rotation"));
         // console.log($(this).attr("class"));
