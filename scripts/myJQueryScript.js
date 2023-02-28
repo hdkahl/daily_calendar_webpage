@@ -24,6 +24,8 @@ let day_to_solve_for = "None";
 function startup() {
 $(".shape").each(function () {
     $(this).data("originalOffset", $(this).position());
+    $(this).data("zRotation", 0);
+    $(this).data("xRotation", 0);
     console.log($(this).position());
     console.log($(this).css("top"));
   });
@@ -104,10 +106,10 @@ function validate_shape_position(ui){
 }
 
 function isShapeOverCalendar(ui){
-    console.log(ui.helper);
-    console.log("#" + ui.helper.attr("id") + " .cell");
+    // console.log(ui.helper);
+    // console.log("#" + ui.helper.attr("id") + " .cell");
     let shape_cells = $("#" + ui.helper.attr("id") + " .cell" );
-    console.log(shape_cells);
+    // console.log(shape_cells);
     let shape_overCalendar = shape_cells.length > 0;
     shape_cells.each( function(index){
             let cell_result = isCellOverCalendar($(this), ui.offset.left, ui.offset.top);
@@ -212,10 +214,28 @@ function get_rotation(obj) {
 }
 jQuery.fn.rotate_90 = function() {
     let degrees = (get_rotation($(this)) + 90) % 360;
+    let zDegrees = ($(this).data("zRotation")+ 90) % 360;
+    let xDegrees = ($(this).data("xRotation"));
+
+    // console.log($(this).data("zRotation"),zDegrees);
+    $(this).data("zRotation", zDegrees);
     $(this).css({
         "--rotation":degrees + "deg",
-        'transform' : 'rotate('+ degrees +'deg)'});
-    console.log($(this).attr("id") + " rotated to " + degrees);
+        'transform' : 'rotateZ('+ zDegrees +'deg) rotateX('+ xDegrees +'deg)'});
+    // console.log($(this).css("transform"));
+    console.log($(this).attr("id") + " rotated to " + xDegrees + "x and ",zDegrees,"z");
+    return $(this);
+};
+jQuery.fn.flip = function() {
+    let xDegrees = ($(this).data("xRotation")+ 180) % 360;
+    let zDegrees = ($(this).data("zRotation"));
+
+    // console.log($(this).data("zRotation"),zDegrees);
+    $(this).data("xRotation", xDegrees);
+    $(this).css({
+        'transform' : 'rotateZ('+ zDegrees +'deg) rotateX('+ xDegrees +'deg)'});
+    // console.log($(this).css("transform"));;
+    console.log($(this).attr("id") + " rotated to " + xDegrees + "x and ",zDegrees,"z");
     return $(this);
 };
 
@@ -225,6 +245,8 @@ jQuery.fn.rotate = function(degrees) {
 };
 $( function() {
     dragged=false;
+    clicks = 0;
+    timer = null;
     $( ".shape" ).draggable({ snap: ".calSquare", handle: ".cell", cursor: "move", opacity: 0.7, helper: "original",
                                 stack: ".shape",   snapTolerance: width1/2, /*revert: "valid",*/ refreshPositions: false,
                                 drag: function() {
@@ -237,6 +259,14 @@ $( function() {
                                         // check_if_solved_by_shape_cells();
                                     }
                             });
+    // $( ".shape" ).dblclick (function() {
+    
+    //     // console.log($(this).prop("rotation"));
+    //     // console.log($(this).attr("class"));
+    //     // console.log(get_rotation($(this)));
+        
+
+    // });
     // $(".cell").droppable(/*{
     //     classes: {
     //         "ui-droppable-active": "ui-state-active",
@@ -253,10 +283,33 @@ $( function() {
             dragged=false;
         }
         else {
-            $(this).rotate_90();
+            clicks++;
+            // console.log("CLICKS=",clicks);
+            let shape = $(this);
+            if (clicks == 1){
+                timer = setTimeout(function(){
+                    console.log(shape.css("transform"));
+                    shape.rotate_90();
+                    console.log(shape.css("transform"));
+
+                    clicks = 0;
+                }, 500);
+            }
+            else {
+                clearTimeout(timer);
+                clicks=0;
+                console.log("DOUBLE CLICK");
+                shape.flip();
+                // console.log(shape);
+                // console.log(shape.hasClass(".flip"));
+                // console.log(shape.css("transform"));
+
+            }
+            
         }
 
     });
+    
     // dragged=false;
 });
 
