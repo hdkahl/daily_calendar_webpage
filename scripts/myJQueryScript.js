@@ -166,8 +166,8 @@ function is_corner_over_calendar(left, top, cell){
 }
 
 function isOverCalendar(ui){
-    console.log( ui.position);
-    console.log(ui.helper.attr("id") + " is at " + ui.offset.left + " " + ui.offset.top);
+    // console.log( ui.position);
+    // console.log(ui.helper.attr("id") + " is at " + ui.offset.left + " " + ui.offset.top);
     let elements = document.elementsFromPoint(ui.offset.left, ui.offset.top);
     let overCalendar = false;
     console.log("starting loop");
