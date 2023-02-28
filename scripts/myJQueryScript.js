@@ -120,12 +120,12 @@ function isShapeOverCalendar(ui){
 function isCellOverCalendar(cell, left_initial, top_initial){
     // console.log( ui.position);
     pad_to_middle = 1;
-    console.log(cell.offset());
+    // console.log(cell.offset());
     // console.log(cell[0] + " is at " + cell[0].offsetLeft + " " + cell[0].offsetTop);
     // console.log(cell);
     let left_position = cell.offset().left;
     let top_position = cell.offset().top;
-    console.log(cell.attr("id") + " is at " + left_position + " " + top_position);
+    // console.log(cell.attr("id") + " is at " + left_position + " " + top_position);
     return (is_corner_over_calendar(left_position + width1/2, top_position + width1/2, cell));
     // return (is_corner_over_calendar(left_position, top_position, cell) && is_corner_over_calendar(left_position + width1, top_position + width1, cell));
    
