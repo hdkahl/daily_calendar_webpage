@@ -219,7 +219,7 @@ jQuery.fn.rotate = function(degrees) {
 $( function() {
     dragged=false;
     $( ".shape" ).draggable({ snap: ".calSquare", handle: ".cell", cursor: "move", opacity: 0.7, helper: "original",
-                                stack: ".shape",   snapTolerance: width1/2, revert: "valid", refreshPositions: false,
+                                stack: ".shape",   snapTolerance: width1/2, /*revert: "valid",*/ refreshPositions: false,
                                 drag: function() {
                                         dragged=true;
                                 },
