@@ -1,0 +1,137 @@
+.row-cols-7>*{flex:0 0 auto;width:14.2857142857%;}
+:root {
+    --cell-width: 77px;
+}
+
+.today{
+    border: 1px solid #000;
+    background: lightseagreen;
+}
+
+.square{
+    aspect-ratio:1/1;
+    /*vertical-align: middle;*/
+    align-items: center;
+    justify-content: center;
+}
+.uCell{
+  background: red;
+
+}
+.aCell {
+  background: blue
+}
+
+.lCell {
+    background: green;
+    /* opacity: 50%; */
+}
+.rCell {
+    background: orange;
+    /* opacity: 50%; */
+}
+.oCell {
+    background: cadetblue;
+    /* opacity: 50%; */
+}
+.jCell {
+    background: salmon;
+    /* opacity: 50%; */
+}
+.zCell {
+    background: purple;
+    /* opacity: 50%; */
+}
+.sCell {
+    background: green;
+    /* opacity: 50%; */
+}
+/* div {
+    border: solid;
+} */
+.empty_cell{
+
+    flex: 0 0 auto;
+    width: var(--cell-width, 70px);
+    height: var(--cell-width, 70px);
+    aspect-ratio:1/1;
+    text-align: center;
+}
+.shape:active{
+    opacity: 25%;
+}
+.shapeContainer {
+    /*cursor: move;*/
+    /* position: block; */
+	/* width: 25%; */
+	/* width: var(--cell-width, 77px) * 4; */
+    /* flex: 0 0 auto; */
+    /*width:100%;*/
+    width: auto;
+    display: inherit;
+    padding: 10px;
+    float: left;
+}
+.flex-container {
+  /* display: block;
+  width: auto; */
+  /* height: auto; */
+}
+.shape{
+  width: auto;
+  /* flex: 0 0 auto; */
+  /*  display: flex;*/
+  aspect-ratio:1/1;
+    /* cursor: move; */
+    position: relative;
+}
+.cell {
+  /* flex: 0 0 auto; */
+  width: var(--cell-width, 70px);
+    height: var(--cell-width, 70px);
+	cursor: move;
+
+    /*width: 20px;*/
+  aspect-ratio:1/1;
+  text-align: center;
+}
+
+#calendar {
+    height: 75%;
+    width: 50%;
+}
+#a-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#u-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+
+#l-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+    /*position: absolute;*/
+}
+#r-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#z-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#j-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+#o-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
+
+#s-shape {
+    --rotation: 0deg;
+    transform: rotate(var(--rotation));
+}
