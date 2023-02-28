@@ -126,7 +126,8 @@ function isCellOverCalendar(cell, left_initial, top_initial){
     let left_position = cell.offset().left;
     let top_position = cell.offset().top;
     console.log(cell.attr("id") + " is at " + left_position + " " + top_position);
-    return (is_corner_over_calendar(left_position, top_position, cell) && is_corner_over_calendar(left_position + width1, top_position + width1, cell));
+    return (is_corner_over_calendar(left_position + width1/2, top_position + width1/2, cell));
+    // return (is_corner_over_calendar(left_position, top_position, cell) && is_corner_over_calendar(left_position + width1, top_position + width1, cell));
    
 }
 
@@ -143,13 +144,19 @@ function is_corner_over_calendar(left, top, cell){
     overlap = 0;
     elements.forEach((elt, i) => {
         // console.log(elt);
-        if (elt.className.includes("calSquare") && !elt.className.includes("today")){
+        if (elt.className.includes("calSquare")){
+            // console.log(cell.attr("id"), " is over ", elt.id);
+            if(elt.className.includes("today")){
+                console.log(cell.attr("id"), " BLOCKS TODAY");
+            }
+            else {
             overCalendar = true;
             // log_element_position("CAl_SQUARE",elt);
             return overCalendar;
+            }
         }
         if (elt.className.includes(" cell") && elt.id[0] != cell.attr("id")[0]){
-            console.log(elt.id);
+            console.log("OVERLAP WITH", elt.id);
             overlap+=1;
         }
         // console.log(overCalendar);
